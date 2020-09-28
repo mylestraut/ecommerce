@@ -17,10 +17,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
-
-from .views import homePageView, aboutPageView, contactPageView, loginPage, registerPage
+from accounts.views import loginPage, registerPage
+from .views import homePageView, aboutPageView, contactPageView
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -38,6 +39,7 @@ urlpatterns = [
     # path('products/<slug:slug>', ProductDetailSlugView.as_view()),
     # path('products-fbv/<int:pk>/', product_detail_view),
     path('login/', loginPage, name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('cart/', include('carts.urls', namespace='carts')),
     path('register/', registerPage, name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
