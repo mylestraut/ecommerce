@@ -21,6 +21,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
 from accounts.views import loginPage, registerPage, guest_register_view
+from addresses.views import checkout_address_create_view
 from .views import homePageView, aboutPageView, contactPageView
 from django.views.generic import TemplateView
 
@@ -31,17 +32,11 @@ urlpatterns = [
     path('contact/', contactPageView, name='contact'),
     path('products/', include('products.urls', namespace='products')),
     path('search/', include('search.urls', namespace='search')),
-    # path('products/', ProductListView.as_view()),
-    # path('featured/', ProductFeaturedListView.as_view()),
-    # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
-    # path('products-fbv/', product_list_view),
-    # path('products/<int:pk>/', ProductDetailView.as_view()),
-    # path('products/<slug:slug>', ProductDetailSlugView.as_view()),
-    # path('products-fbv/<int:pk>/', product_detail_view),
     path('login/', loginPage, name='login'),
     path('register/guest/', guest_register_view, name='guest_register'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('cart/', include('carts.urls', namespace='carts')),
+    path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('register/', registerPage, name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
 ]
