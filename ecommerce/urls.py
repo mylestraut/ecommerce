@@ -21,7 +21,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
 from accounts.views import loginPage, registerPage, guest_register_view
-from addresses.views import checkout_address_create_view
+from addresses.views import checkout_address_create_view, checkout_address_reuse_view
 from .views import homePageView, aboutPageView, contactPageView
 from django.views.generic import TemplateView
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('cart/', include('carts.urls', namespace='carts')),
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
+    path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
     path('register/', registerPage, name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
 ]
