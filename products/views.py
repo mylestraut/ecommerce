@@ -30,6 +30,13 @@ class ProductListView(ListView):
 		request = self.request
 		return Product.objects.all()
 
+	def get_context_data(self, *args, **kwargs):
+		request = self.request
+		context = super(ProductListView, self).get_context_data(*args, **kwargs)
+		cart_obj, new_obj = Cart.objects.new_or_get(request)
+		context['cart'] = cart_obj
+		return context
+
 	#def get_context_data(self, *args, **kwargs):
 	#	context = super(ProductListView, self).get_context_data(*args, **kwargs)
 	#	print(context)
