@@ -22,6 +22,98 @@
 
 		    <script type="text/javascript">
 		    	$(document).ready(function(){
+		    		// Contact Form Handler
+		    		var contactForm = $('.contact-form')
+		    		var contactFormMethod = contactForm.attr("method")
+		    		var contactFormEndpoint = contactForm.attr("action")
+
+		    		function displaySubmitting(submitBtn, defaultText, doSubmit){
+		    			if (doSubmit){
+		    				submitBtn.addClass("disabled")
+		    				submitBtn.html("<i class='fa fa-spin fa-spinner'></i> Sending...")
+		    			}
+		    			else{
+		    				submitBtn.removeClass("disabled")
+		    				submitBtn.html(defaultText)
+		    			}		    			
+		    		}
+
+		    		contactForm.submit(function(event){
+		    			event.preventDefault()
+
+		    			var contactFormSubmitBtn = contactForm.find("[type='submit']")
+		    			var contactFormSubmitBtnTxt = contactFormSubmitBtn.text()
+		    			var contactFormData = contactForm.serialize()
+		    			var thisForm = $(this)
+		    			displaySubmitting(contactFormSubmitBtn, "", true)
+		    			$.ajax({
+		    				method : contactFormMethod,
+		    				action : contactFormEndpoint,
+		    				data : contactFormData,
+		    				success : function(data){
+		    					contactForm[0].reset()
+		    					$.alert({
+									title: 'Success!',
+									content: data.message,
+									theme: 'modern'
+									})
+		    					setTimeout(function(){
+		    						displaySubmitting(contactFormSubmitBtn, contactFormSubmitBtnTxt, false)
+		    					}, 500)
+		    				},
+		    				error : function(error){
+		    					console.log(error.responseJSON)
+		    					var jsonData = error.responseJSON
+		    					var msg = ""
+
+		    					$.each(jsonData, function(key, value){
+		    						msg += key + ": " + value[0].message + "<br>"// because value is an array
+		    					})
+		    					$.alert({
+									title: 'Oops!',
+									content: msg,
+									theme: 'modern'
+									})
+		    					setTimeout(function(){
+		    						displaySubmitting(contactFormSubmitBtn, contactFormSubmitBtnTxt, false)
+		    					}, 500)
+		    				}
+		    			})
+		    		})
+
+
+
+		    		//Auto Search
+		    		var searchForm = $(".search-form")
+		    		var searchInput = searchForm.find("[name='q']") // input name = 'q'
+		    		var typingTimer;
+		    		var typingInterval = 500 // 500 = 0.5 seconds
+		    		var searchBtn = searchForm.find("[type='submit']") // will find submit button
+
+		    		searchInput.keyup(function(event){
+		    			clearTimeout(typingTimer)
+		    			typingTimer = setTimeout(performSearch, typingInterval) //setTimeout takes in a function and interval
+		    		})
+
+		    		searchInput.keydown(function(event){
+		    			clearTimeout(typingTimer)
+		    		})
+
+		    		function displaySearching(){
+		    			searchBtn.addClass("disabled")
+		    			searchBtn.html("<i class='fa fa-spin fa-spinner'></i> Searching...")
+		    		}
+
+		    		function performSearch(){
+		    			displaySearching()
+		    			var query = searchInput.val()
+		    			setTimeout(function(){
+		    				window.location.href = '/search/?q=' + query
+		    			}, 1000)
+		    			
+		    		}
+
+		    		// Cart + Add Products
 		    		var productForm = $('.form-product-ajax')
 
 		    		productForm.submit(function(event){
@@ -57,8 +149,11 @@
 		    					
 		    				},
 		    				error : function(errorData){
-		    					console.log("error")
-		    					console.log(errorData)
+		    					$.alert({
+									title: 'Oops!',
+									content: "An Error occured",
+									theme: 'modern'
+									})
 		    				}
 
 		    			})
@@ -104,8 +199,11 @@
 		    					
 		    				},
 		    				error : function(errorData){
-		    					console.log("error")
-		    					console.log(errorData)
+		    					$.alert({
+									title: 'Oops!',
+									content: "An Error occured",
+									theme: 'modern'
+									})
 		    				}
 		    			})
 		    		}

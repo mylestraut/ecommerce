@@ -29,14 +29,14 @@ class ContactForm(forms.Form):
 				)
 			)
 
-	def clean_email(self):
+	#def clean_email(self):
 
-		email = self.cleaned_data.get('email')
+		#email = self.cleaned_data.get('email')
 
-		if not 'gmail.com' in email:
-			raise forms.ValidationError('Email has to be gmail')
+		#if not 'gmail.com' in email:
+			#raise forms.ValidationError('Email has to be gmail')
 
-		return email
+		#return email
 
 
 
