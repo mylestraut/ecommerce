@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'tags',
 ]
 
+AUTH_USER_MODEL = 'accounts.User' # This changed the default user model to ours
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -1,0 +1,72 @@
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "T-Shirt",
+        "slug": "t-shirt",
+        "description": "This is a good T-Shirt",
+        "price": "39.99",
+        "image": "",
+        "featured": false,
+        "active": true,
+        "timestamp": "2020-07-05T10:36:45.721Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "title": "Hat",
+        "slug": "Hat",
+        "description": "This is a hat",
+        "price": "19.99",
+        "image": "products/22642651/22642651.jpeg",
+        "featured": true,
+        "active": true,
+        "timestamp": "2020-07-05T10:36:45.721Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "Supercomputer",
+        "slug": "supercomputer",
+        "description": "A supercomputer",
+        "price": "399999.99",
+        "image": "",
+        "featured": true,
+        "active": true,
+        "timestamp": "2020-07-05T10:36:45.721Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "T-Shirt",
+        "slug": "t-shirt-dzh9",
+        "description": "Another one",
+        "price": "39.99",
+        "image": "",
+        "featured": false,
+        "active": true,
+        "timestamp": "2020-07-05T10:36:45.721Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "title": "Lorum Ipsem",
+        "slug": "lorum-ipsem",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "price": "39.99",
+        "image": "",
+        "featured": false,
+        "active": true,
+        "timestamp": "2020-07-05T10:36:45.721Z"
+    }
+}
+]

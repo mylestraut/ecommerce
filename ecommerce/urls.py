@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
-from accounts.views import loginPage, registerPage, guest_register_view
+from accounts.views import LoginView, RegisterView, guest_register_view
 from addresses.views import checkout_address_create_view, checkout_address_reuse_view
 from .views import homePageView, aboutPageView, contactPageView
 from carts.views import cart_detail_api_view
@@ -33,14 +33,14 @@ urlpatterns = [
     path('contact/', contactPageView, name='contact'),
     path('products/', include('products.urls', namespace='products')),
     path('search/', include('search.urls', namespace='search')),
-    path('login/', loginPage, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
     path('register/guest/', guest_register_view, name='guest_register'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('api/cart/', cart_detail_api_view, name='api-cart'),
     path('cart/', include('carts.urls', namespace='carts')),
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
-    path('register/', registerPage, name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
 ]
 
